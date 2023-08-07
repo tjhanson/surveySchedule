@@ -1,1 +1,0 @@
-export const GET_SITE_BY_NAME = 'GET_SITE_BY_NAME';
