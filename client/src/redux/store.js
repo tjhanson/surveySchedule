@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import projectsReducer from '../slices/projectsSlice.js'
-import usersReducer from '../slices/userSlice.js'
+import surveyRequestsReducer from '../slices/surveyRequestsSlice'
+import surveyorReducer from '../slices/surveyorSlice'
 
 
 export default configureStore({
     reducer:{
-        projects: projectsReducer,
-        users: usersReducer
+        surveyRequests: surveyRequestsReducer,
+        surveyors:surveyorReducer,
     },
     devTools:true,
 })

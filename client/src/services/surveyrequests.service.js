@@ -1,13 +1,13 @@
 import axios from "axios";
-import qs from "qs"
 
-const API_URL = "http://127.0.0.1:8080/projects/";
+const API_URL = "http://10.1.2.208:8080/surveyrequests/";
 
 
-const getProjectsByList = (projects) => {
+const getRequestsByDate = (day) => {
+  console.log(day)
   return axios
-    .get(API_URL+'/bylist', {
-      params:{projects:projects.reduce((f, s) => `${f},${s}`)},
+    .get(API_URL+'/byDate', {
+      params:{day:day},
       
     })
     .then((response) => {
@@ -15,7 +15,7 @@ const getProjectsByList = (projects) => {
     });
 };
 
-const getProjects = () => {
+const getRequestsNotScheduled = () => {
   return axios
     .get(API_URL, {
       
@@ -26,7 +26,7 @@ const getProjects = () => {
     });
 };
 
-const updateProject = (id,updateData) => {
+const updateRequest = (id,updateData) => {
   return axios
     .put(API_URL+id, updateData, {
       
@@ -36,9 +36,9 @@ const updateProject = (id,updateData) => {
         return response.data;
     });
 };
-const addProject = (newProject) => {
+const addRequest = (newRequest) => {
   return axios
-    .post(API_URL, newProject, {
+    .post(API_URL, newRequest, {
       
       
     })
@@ -48,5 +48,5 @@ const addProject = (newProject) => {
 };
 
 export default {
-    getProjectsByList,getProjects,updateProject,addProject
+  getRequestsByDate,getRequestsNotScheduled,updateRequest,addRequest
   };

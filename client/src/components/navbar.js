@@ -1,13 +1,17 @@
-import React, {} from 'react';
-import { Container, Navbar,Button} from 'react-bootstrap';
+import React, {forwardRef} from 'react';
+import { Container, Navbar,Button,Nav} from 'react-bootstrap';
 import { userLogout } from '../slices/userSlice';
 import {useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from 'react-redux';
 
+
+
+
+
 function SiteNavbar() {
-    const { user } = useSelector(state => state.users);
     const dispatch = useDispatch();
     let navigate = useNavigate();
+
     
     const logoutUser = () => {
         dispatch(userLogout());
@@ -27,10 +31,18 @@ function SiteNavbar() {
         //dispatch(userLogout());
         navigate("/map", { replace: true });            
       };
+//       const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => {
+//         //console.log(value)
+//         return(
+//         <Button className="dateA" onClick={onClick} ref={ref}>
+//           {"Current Date: "+value }
+//         </Button>)
+// });
+
 
     return(
-        <Navbar bg='light'>        
-            <Container>
+        <Navbar bg='secondary'>        
+            <Container fluid>
                 <Navbar.Brand href="#home">
                     <img
                     alt=""
@@ -39,13 +51,13 @@ function SiteNavbar() {
                     height="30"
                     className="d-inline-block align-top"
                     />{' '}
-                    FCT Index
+                    Survey Schedule
                 </Navbar.Brand>
+                <Nav className="me-auto ms-4" >
+
+                </Nav>
                 <div className='d-flex'>
-                {user && user.username === "admin" ? <Button className='me-2 btn-secondary' onClick={adminBoard}>Admin</Button> : <></>}
-                {user ? <Button className='me-2 btn-secondary' onClick={projectMap}>Map</Button> : <></>}
-                {user ? <Button className='me-2 btn-secondary' onClick={projectBoard}>Projects</Button> : <></>}
-                {user ? <Button className='me-2' onClick={logoutUser}>Logout</Button> : <></>}
+                  
                 </div>
             </Container>
         </Navbar>

@@ -4,7 +4,9 @@ const Role = db.role;
 const bodyParser = require("body-parser")
 const cors = require("cors")
 
-const projects = require('./routes/api/projects');
+const surveyRequests = require('./routes/api/surveyRequests');
+const surveyor = require('./routes/api/surveyor');
+const day = require('./routes/api/day')
 
 
 const app = express();
@@ -21,9 +23,9 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-const user = require('./routes/api/users')(app);
-const auth = require('./routes/api/auth')(app);
-const url = "mongodb://127.0.0.1:27017/fctIndex";
+//const user = require('./routes/api/users')(app);
+//const auth = require('./routes/api/auth')(app);
+const url = "mongodb://127.0.0.1:27017/surveySchedule";
 db.mongoose
   .connect(url, {
     useNewUrlParser: true,
@@ -31,7 +33,7 @@ db.mongoose
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
-    initial();
+    //initial();
   })
   .catch(err => {
     console.error("Connection error", err);
@@ -75,8 +77,9 @@ function initial() {
 }
 
 
-app.use('/projects',projects)
-//app.use('/users',user)
+app.use('/surveyRequests',surveyRequests)
+app.use('/surveyor',surveyor)
+app.use('/day',day)
 //app.use('/auth',auth)
 
 
